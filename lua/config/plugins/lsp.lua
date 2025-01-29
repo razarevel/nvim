@@ -13,14 +13,16 @@ return {
           },
         },
       },
+
     },
     config = function()
       require("lspconfig").lua_ls.setup {}
+      vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end)
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
+          -- formatter
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
-
           if client.supports_method('textDocument/formatting') then
             -- Format the current buffer on save
             vim.api.nvim_create_autocmd('BufWritePre', {

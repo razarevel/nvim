@@ -1,3 +1,5 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 require("config.lazy")
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
 vim.keymap.set("n", "<space>x", ":.lua<CR>")
@@ -9,7 +11,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
-
 })
 
 
@@ -17,19 +18,14 @@ vim.opt.shiftwidth = 4
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = ""
-vim.keymap.set("n", "<up>", "<nop>", { noremap = true })
-vim.keymap.set("n", "<down>", "<nop>", { noremap = true })
-vim.keymap.set("n", "<left>", "<nop>", { noremap = true })
-vim.keymap.set("n", "<right>", "<nop>", { noremap = true })
+vim.opt.clipboard = "unnamedplus"
+vim.opt.scrolloff = 15
 
-vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<left>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<right>", "<nop>", { noremap = true })
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
-
 
 vim.api.nvim_create_autocmd('TermOpen', {
   group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
@@ -40,17 +36,15 @@ vim.api.nvim_create_autocmd('TermOpen', {
 })
 
 
-local job_id = 0
-vim.keymap.set("n", "<space>st", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 15)
 
-  job_id = vim.bo.channel
-end)
+vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n><C-w>h")
+vim.keymap.set("n", "<space>fs", "<cmd>Ex<CR>")
+
+-- undo
+vim.keymap.set("n", "u", "<nop>", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<cmd>undo<CR>")
 
 
-vim.keymap.set("n", "<space>example", function()
-  vim.fn.chansend(job_id, { "ls -al\rn" })
-end)
+
+-- hl search
+vim.keymap.set("n", "<esc><esc>", "<cmd>nohl<CR>");
