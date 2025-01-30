@@ -12,7 +12,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
+vim.keymap.set("i", "<up>", "<nop>")
+vim.keymap.set("i", "<left>", "<nop>")
+vim.keymap.set("i", "<down>", "<nop>")
+vim.keymap.set("i", "<right>", "<nop>")
 
 vim.opt.shiftwidth = 4
 vim.opt.number = true
@@ -43,8 +46,6 @@ vim.keymap.set("n", "<space>fs", "<cmd>Ex<CR>")
 -- undo
 vim.keymap.set("n", "u", "<nop>", { noremap = true })
 vim.keymap.set("n", "<C-u>", "<cmd>undo<CR>")
-
-
 
 -- hl search
 vim.keymap.set("n", "<esc><esc>", "<cmd>nohl<CR>");

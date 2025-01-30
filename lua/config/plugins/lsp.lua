@@ -31,6 +31,16 @@ return {
                 vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
               end,
             })
+            -- lsp maps
+            local map = function(keys, func, desc, mode)
+              mode = mode or 'n'
+              vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = 'LSP: ' .. desc })
+            end
+            map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+            map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+            map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+            map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+            map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           end
         end,
       })
