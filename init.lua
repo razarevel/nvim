@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
 vim.keymap.set("i", "<up>", "<nop>")
 vim.keymap.set("i", "<left>", "<nop>")
 vim.keymap.set("i", "<down>", "<nop>")
@@ -24,8 +25,11 @@ vim.opt.mouse = ""
 vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 15
 
+
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.indent_size = 2
+vim.opt.tabstop = 2
 
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
